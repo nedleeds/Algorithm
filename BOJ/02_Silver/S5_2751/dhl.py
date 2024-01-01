@@ -17,7 +17,7 @@ def sorted_method():
     l = [int(sys.stdin.readline()) for _ in range(int(input()))]
     for x in sorted(l):
         sys.stdout.write(f'{x}\n')
-        
+    
     """
     아래 코드 실행 시간 : 1304 ms
     import sys
