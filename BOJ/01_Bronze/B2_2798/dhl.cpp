@@ -3,7 +3,7 @@
 using namespace std;
 
 int N, M;
-int DAT[100];
+bool DAT[100]; // int 배열과 메모리 차이는 없다고 측정됨
 int Max = -2134567890;
 vector<int> V;
 
@@ -17,9 +17,9 @@ void dfs(int depth, int idx, int s){
         if (DAT[i])       continue;
         if (s + V[i] > M) continue; 
 
-        DAT[i] = 1;
+        DAT[i] = true;
         dfs(depth + 1, i, s + V[i]);
-        DAT[i] = 0;
+        DAT[i] = false;
     }
 }
 
