@@ -3,17 +3,24 @@
 using namespace std;
 
 int N, M;
-vector V;
+int DAT[100];
+int Max = -2134567890;
+vector<int> V;
 
-int dfs(int target, int depth){
-    if (depth == target){
-        
+void dfs(int depth, int idx, int s){
+    if (depth == 3){
+        if (s > Max){ Max = s; }
+        return ;
     }
 
-    // for (int j = 0; j < breadth; j++)
-    // {
-    //     dfs()
-    // }
+    for (int i = 0 ; i < N; i++){
+        if (DAT[i])       continue;
+        if (s + V[i] > M) continue; 
+
+        DAT[i] = 1;
+        dfs(depth + 1, i, s + V[i]);
+        DAT[i] = 0;
+    }
 }
 
 int main()
@@ -28,7 +35,7 @@ int main()
         V[i] = x;
     }
 
-    for (int i = 0; i < N; i++){
-        dfs(3, 0);
-    }
+    dfs(0, 0, 0);
+    cout << Max << endl;
+    return 0;
 }
