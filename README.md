@@ -8,7 +8,7 @@
 
 ### 5. Commit message 
 
-📌 "`<Type>: <Source>-<Problem #> [Algorithm Type]`"
+📌 "`<Type>: [Algorithm Type] <message>`"
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ex) add: boj-12345 [DFS, DP]
 
