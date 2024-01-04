@@ -1,14 +1,24 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <string>
 using namespace std;
 
 int N;
-vector<int, string> V;
+struct Student {
+    int id;
+    int age;
+    string name;
+};
+vector<Student> V;
 
 // cpp vector sorting method
-bool compare(int a, string b){
-    
+bool compare(Student a, Student b){
+    if (a.age < b.age) {return true;}
+    if (a.age == b.age) { 
+        if (a.id < b.id) { return true;}
+    }
+    return false;
 }
 
 int main()
@@ -17,13 +27,20 @@ int main()
     cin.tie(nullptr);
     cin >> N;
 
-    int id;
-    string name;
-    V = vector<int, string>(N);
+    Student s;
+
+    V = vector<Student>(N);
     for (int i = 0; i < N; i++)
     {
-        cin >> id >> name;
-        V.push_back(N);
+        s.id = i;
+        cin >> s.age >> s.name;
+        V[i] = s;
+    }
+
+    sort(V.begin(), V.end(), compare);
+
+    for (auto s: V){
+        cout << s.age << " " << s.name << "\n";
     }
 
     return 0;
