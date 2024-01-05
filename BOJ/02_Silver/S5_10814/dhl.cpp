@@ -20,7 +20,6 @@ bool compare(Student a, Student b){
     }
     return false;
 }
-
 int main()
 {
     ios_base::sync_with_stdio(false);
