@@ -1,31 +1,38 @@
 #include <iostream>
-#include <vector>
+#include <queue>
 using namespace std;
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    freopen("input.txt", "r", stdin);
+
     int n, k;
     cin >> n >> k;
 
-    vector<int> v(n + 1, 0);
-    vector<int> dat(n + 1, 0);
-    for (int i = 1; i <=n; i++){
-        dat[i] = 0;
-        v[i] = i;
+    queue<int> q;
+    for (int i = 1; i <= n; i++ ){
+        q.push(i);
     }
 
-    int cnt = 0;
-    dat[0] = 1;
-    for (int j = 1; j <= n; j++){
-        int n_i = (j * k) % n;
-        while (dat[n_i]){
-            n_i = (n_i + 1) % n;
+    int cnt = 1;
+    int idx = 1;
+    cout << "<";
+    while (!q.empty()){
+        int f = q.front();
+        q.pop();
+
+        if (cnt % k == 0){
+            cout << f;
+            idx++;
+            if (idx <= n){ cout << ", "; }
+            else{ cout << ">\n"; }
         }
-        cout << v[n_i] << ' ';
-        cnt += 1;
-        dat[n_i] = 1;
+        else{
+            q.push(f);
+        }
+        cnt++;
     }
 
     return 0;
