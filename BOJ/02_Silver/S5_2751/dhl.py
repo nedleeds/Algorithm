@@ -11,6 +11,7 @@ def heap_method():
         print(heapq.heappop(heap))
 
 def sorted_method():
+    
     # 아래 코드 실행 시간 : 1068ms 시스템 입출력 사용 여부 차이
     import sys
     
