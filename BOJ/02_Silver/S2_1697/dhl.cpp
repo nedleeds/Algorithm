@@ -3,6 +3,7 @@
 using namespace std;
 
 struct POS{ int p, cnt; };
+bool DAT[100001];
 queue<POS> Q;
 
 int main(){
@@ -15,26 +16,29 @@ int main(){
     cin >> s >> b;
 
     Q.push({s, 0});
-    POS ans = {0, -99};
     while (!Q.empty()){
         
         for (int i = 0; i < Q.size(); i++){
             POS sis = Q.front();
+            DAT[sis.p] = true;
             Q.pop();
 
-            if (sis.p + 1 == b or sis.p - 1 == b or sis.p * 2 == b){
-                ans.cnt = sis.cnt + 1;
-                break;
+            if (sis.p == b){
+                cout << sis.cnt << '\n';
+                return 0;
             }      
-
-            Q.push({sis.p + 1, sis.cnt + 1});
-            Q.push({sis.p - 1, sis.cnt + 1});
-            Q.push({sis.p * 2, sis.cnt + 1});
+            
+            if (sis.p + 1 <= 100000 && !DAT[sis.p + 1]){
+               Q.push({sis.p + 1, sis.cnt + 1});
+            }
+            if (sis.p - 1 >= 0 && !DAT[sis.p - 1]){
+                Q.push({sis.p - 1, sis.cnt + 1});
+            }
+            if (sis.p * 2 <= 100000 && !DAT[sis.p * 2]){
+                Q.push({sis.p * 2, sis.cnt + 1});
+            }
         } 
-        if (ans.cnt != -99){ break; }
     }
-
-    cout << ans.cnt << '\n';
 
     return 0;
 }
