@@ -6,7 +6,7 @@
 
 ### 2. Member
 
-### 5. Commit message 
+### 3. Commit message 
 
 📌 "`<Type>: [Algorithm Type] <message>`"
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
