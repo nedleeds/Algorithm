@@ -11,3 +11,4 @@
 *.o
 *.exe
 \*/.DS_Store/
+.DS_Store/
