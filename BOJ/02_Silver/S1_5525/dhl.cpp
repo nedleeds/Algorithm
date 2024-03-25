@@ -1,35 +1,31 @@
 #include <iostream>
-#include <vector>
-#define fastio ios_base::sync_with_stdio(false), cin.tie(nullptr);
+#include <algorithm>
 using namespace std;
 
-int N, M;
-vector<char> V;
-
-int main()
-{
-    fastio;
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     freopen("input.txt", "r", stdin);
 
-    cin >> N >> M;
+    int n, m;
+    string s;
+    cin >> n >> m >> s;
 
-    if (M < 2){
-        cout << 0 << '\n';
-        return 0;
-    }
+    int ans = 0;
+    for (int i = 0; i < m; i++){
+        if (s[i] != 'I') continue;
 
-    int cnt = 0;
-    V.resize(M, 0);
-    for (int i = 0; i < M; i++){
-        cin >> V[i];
-        if (i >= 2){
-            if (V[i - 2] == 'I' && V[i - 1] == 'O' && V[i] == 'I'){
-                cnt++;
+        int k = 0; // IOI 수
+        while (s[i + 1] == 'O' && s[i + 2] == 'I'){
+            k++;
+            if (k == n){
+                ans++;
+                k--; // 연속된 IOI(n) 일 때를 고려하여 하나 뺌
             }
-        }
+            i += 2; // next index
+        } 
+
     }
-    
-    cout << cnt << '\n';
 
     return 0;
 }
