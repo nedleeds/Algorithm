@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 int main(){
@@ -13,8 +12,8 @@ int main(){
 
     int ans = 0;
     for (int i = 0; i < m; i++){
-        if (s[i] != 'I') continue;
-
+        if (s[i] == 'O') continue;
+        
         int k = 0; // IOI 수
         while (s[i + 1] == 'O' && s[i + 2] == 'I'){
             k++;
@@ -24,8 +23,9 @@ int main(){
             }
             i += 2; // next index
         } 
-
     }
+
+    cout << ans << '\n';
 
     return 0;
 }
