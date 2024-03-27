@@ -11,27 +11,22 @@ int main()
     cin >> tc;
 
     while (tc--){
-        int m, n, x, y;
-        cin >> m >> n >> x >> y;
+        int m, n, tgt_x, tgt_y;
+        cin >> m >> n >> tgt_x >> tgt_y;
 
-        int is_true = 1;
-        int cnt = 1;
-        int og_x = x; int og_y = y;
-        while (is_true){
-            ++cnt;
+        int year = 1;
+        int x = 1; int y = 1;
+        while (true){
+            if (x == tgt_x && y == tgt_y){ break; }
+            else {
+                if (x == m && y == n){ year = -1; break; }
+            } 
+
             x = (x < m) ? x + 1 : 1;
             y = (y < n) ? y + 1 : 1;
-            
-            if (x == m && y == n){
-                break;
-            }
-            if (x == og_x && y == og_y){
-                cnt = -1;
-                is_true = 0;
-                break;
-            }
+            ++year;
         }
-        cout << cnt << '\n';
+        cout << year << '\n';
     }
 
     return 0;
