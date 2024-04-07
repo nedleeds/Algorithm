@@ -16,16 +16,11 @@ int main()
 
         int year = 1;
         int x = 1; int y = 1;
-        while (true){
-            if (x == tgt_x && y == tgt_y){ break; }
-            else {
-                if (x == m && y == n){ year = -1; break; }
-            } 
-
-            x = (x < m) ? x + 1 : 1;
-            y = (y < n) ? y + 1 : 1;
-            ++year;
+        
+        for (int k = 0; k < m; k += m){
+            
         }
+
         cout << year << '\n';
     }
 
