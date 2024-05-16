@@ -1,14 +1,13 @@
 #include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 
-struct Answer{
-    string value, cmds;
-};
-queue<Answer> Q;
+struct Step { string value, cmd; };
+vector<string> Ans;
 
 string op_d(const string &a){
-    int tmp = atoi(a.c_str());
+    int tmp = atoi(a.c_str()) * 2;
     tmp = tmp > 9999 ? tmp % 10000 : tmp;
     return to_string(tmp);
 }
@@ -39,6 +38,29 @@ string op_r(const string &a){
     return a_new;
 }
 
+void bfs(string src, string tgt){
+    queue<Step> q;
+    q.push({src, ""});
+
+    while(!q.empty()){
+        bool stop = false;
+        Step now_s = q.front();
+        q.pop();
+
+        if (now_s.value == tgt){
+            Ans.push_back(now_s.cmd);
+            stop = true;
+        }
+
+        q.push({op_d(now_s.value), now_s.cmd + "D"});
+        q.push({op_s(now_s.value), now_s.cmd + "S"});
+        q.push({op_l(now_s.value), now_s.cmd + "L"});
+        q.push({op_r(now_s.value), now_s.cmd + "R"});
+
+        if (stop) { break; }
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -51,25 +73,12 @@ int main(){
         string a, b;
         cin >> a >> b;
         
-        Q.push({a, ""});
-        queue<string> ans;
-        while(!Q.empty()){
-            Answer now = Q.front();
-            Q.pop();
+        bfs(a, b);
 
-            if (now.value == b){
-                ans.push(now.cmds);
-                cout << now.cmds << '\n';
-                continue;
-            }
-
-            while(ans.size() == 0){
-                Q.push({op_d(now.value), now.cmds + "D"});
-                Q.push({op_s(now.value), now.cmds + "S"});
-                Q.push({op_l(now.value), now.cmds + "L"});
-                Q.push({op_r(now.value), now.cmds + "R"});
-            }
+        for (auto a : Ans){
+            cout << a << '\n';
         }
+        Ans.clear();
     }
 
     return 0;
