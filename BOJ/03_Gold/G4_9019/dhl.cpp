@@ -1,3 +1,5 @@
+#include <cerrno>
+#include <filesystem>
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -68,7 +70,12 @@ void bfs(string src, string tgt) {
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(nullptr);
-  freopen("input.txt", "r", stdin);
+  const char *input_file =
+      "/Users/dhl/Src/Algorithm/BOJ/03_Gold/G4_9019/input.txt";
+  if (freopen(input_file, "r", stdin) == nullptr) {
+    cerr << "Failed to open input file." << endl;
+    return 1;
+  }
 
   int test_case;
   cin >> test_case;
